@@ -4,8 +4,8 @@ from google import genai
 from google.genai import types
 from dotenv import load_dotenv
 
-from config import SYSTEM_PROMPT
-from functions.call_function import available_functions
+from prompts import system_prompt
+from call_function import available_functions
 
 
 def main():
@@ -43,7 +43,7 @@ def generate_content(client, messages, verbose):
         model="gemini-2.0-flash-001",
         contents=messages,
         config=types.GenerateContentConfig(
-            tools=[available_functions], system_instruction=SYSTEM_PROMPT
+            tools=[available_functions], system_instruction=system_prompt
         ),
     )
     if verbose:
